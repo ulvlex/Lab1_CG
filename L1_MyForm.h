@@ -283,6 +283,7 @@ namespace Lab1CG {
 			this->button4->TabIndex = 14;
 			this->button4->Text = L"button4";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &L1_MyForm::button4_Click);
 			// 
 			// button5
 			// 
@@ -292,6 +293,7 @@ namespace Lab1CG {
 			this->button5->TabIndex = 15;
 			this->button5->Text = L"button5";
 			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &L1_MyForm::button5_Click);
 			// 
 			// label1
 			// 
@@ -365,8 +367,8 @@ namespace Lab1CG {
 
 		button2->Text = "X";
 		button3->Text = "Y";
-		button4->Text = "Увеличить";
-		button5->Text = "Уменьшить";
+		button4->Text = "Уменьшить";
+		button5->Text = "Увеличить";
 
 		label1->Text = "Задание координат";
 		label2->Text = "Отображение отн-но оси";
@@ -421,9 +423,9 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	}
 	else {
 		for (int i = 0; i < 3; i++) {
-			int xa = (coordRectangle[i].X) * (-1) + (coordRectangle[i].Y) * 0;
-			int ya = (coordRectangle[i].X) * 0 + (coordRectangle[i].Y) * (1);
-			coordRectangle[i] = Point(xa, ya);
+			int xa = (coordTriangle[i].X) * (-1) + (coordTriangle[i].Y) * 0;
+			int ya = (coordTriangle[i].X) * 0 + (coordTriangle[i].Y) * (1);
+			coordTriangle[i] = Point(xa, ya);
 		}
 	}
 	Paint();
@@ -438,9 +440,47 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	}
 	else {
 		for (int i = 0; i < 3; i++) {
-			int xa = (coordRectangle[i].X) * (1) + (coordRectangle[i].Y) * 0;
-			int ya = (coordRectangle[i].X) * 0 + (coordRectangle[i].Y) * (-1);
+			int xa = (coordTriangle[i].X) * (1) + (coordTriangle[i].Y) * 0;
+			int ya = (coordTriangle[i].X) * 0 + (coordTriangle[i].Y) * (-1);
+			coordTriangle[i] = Point(xa, ya);
+		}
+	}
+	Paint();
+}
+
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	float step = 0.5;
+	if (check) {
+		for (int i = 0; i < 4; i++) {
+			int xa = (coordRectangle[i].X) * step;
+			int ya = (coordRectangle[i].Y) * step;
 			coordRectangle[i] = Point(xa, ya);
+		}
+	}
+	else {
+		for (int i = 0; i < 3; i++) {
+			int xa = (coordTriangle[i].X) * step;
+			int ya = (coordTriangle[i].Y) * step;
+			coordTriangle[i] = Point(xa, ya);
+		}
+	}
+	Paint();
+
+}
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	float step = 1.5;
+	if (check) {
+		for (int i = 0; i < 4; i++) {
+			int xa = (coordRectangle[i].X) * step;
+			int ya = (coordRectangle[i].Y) * step;
+			coordRectangle[i] = Point(xa, ya);
+		}
+	}
+	else {
+		for (int i = 0; i < 3; i++) {
+			int xa = (coordTriangle[i].X) * step;
+			int ya = (coordTriangle[i].Y) * step;
+			coordTriangle[i] = Point(xa, ya);
 		}
 	}
 	Paint();
